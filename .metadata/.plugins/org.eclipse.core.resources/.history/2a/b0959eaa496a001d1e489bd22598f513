@@ -1,0 +1,12 @@
+package com.kttkpm.bill.service;
+
+import org.bson.types.ObjectId;
+
+import com.kttkpm.bill.model.Customer;
+
+public interface CustomerService {
+	public Customer getCustomerByPhoneAndPassword(String phoneNumber,String password);
+	public Customer getCustomerById(ObjectId customerId);
+	public Customer updateCustomer(Customer customer);
+	public Customer saveCustomer(Customer customer);
+}

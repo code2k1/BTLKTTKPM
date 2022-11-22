@@ -1,0 +1,39 @@
+package com.hoangdh.billingservice.controller;
+
+import com.hoangdh.billingservice.dtos.BillingRequest;
+import com.hoangdh.billingservice.dtos.BillingResponse;
+import com.hoangdh.billingservice.service.BillingService;
+import io.github.resilience4j.retry.annotation.Retry;
+import io.github.resilience4j.timelimiter.annotation.TimeLimiter;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+@RestController
+@RequestMapping("/api/billings")
+public class BillingController {
+	@Autowired
+    private  BillingService billingService;
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createBilling(@RequestBody  BillingRequest billingRequest) {
+        billingService.createBilling(billingRequest);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    @TimeLimiter(name = "passenger")
+    @Retry(name = "passenger", fallbackMethod = "fallBackMethod")
+    public CompletableFuture<List<BillingResponse>> getBillingsByPassengerId(@RequestParam(name = "passengerId") Long passengerId) {
+        return CompletableFuture.supplyAsync(() -> billingService.getBillingsByPassengerId(passengerId));
+    }
+
+    public CompletableFuture<String> fallBackMethod(Long passengerId, RuntimeException runtimeException) {
+        return CompletableFuture.supplyAsync(() -> "Oops! Something went wrong!");
+    }
+}

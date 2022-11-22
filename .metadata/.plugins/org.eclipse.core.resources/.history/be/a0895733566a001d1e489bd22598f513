@@ -1,0 +1,13 @@
+package com.kttkpm.billdetail;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class BilldetailApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(BilldetailApplication.class, args);
+	}
+
+}

@@ -1,0 +1,17 @@
+package com.kttkpm.product.dtos;
+
+import org.bson.types.ObjectId;
+
+import com.kttkpm.product_type.model.ProductType;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class ProductTypeResponse {
+	private String productTypeId;
+	private String productTypeName;
+}

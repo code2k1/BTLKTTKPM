@@ -1,0 +1,5 @@
+package com.kttkpm.product.model;
+
+public class Product {
+
+}

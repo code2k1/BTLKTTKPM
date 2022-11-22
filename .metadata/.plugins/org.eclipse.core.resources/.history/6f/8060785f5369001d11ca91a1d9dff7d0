@@ -1,0 +1,13 @@
+package com.kttkpm.product.service;
+
+import org.bson.types.ObjectId;
+
+import com.kttkpm.product.dtos.ProductResponse;
+import com.kttkpm.product.model.Product;
+
+public interface ProductService {
+	Product findByProductId(ObjectId productId);
+	ProductResponse getProductContainTypeProductByIdProduct(ObjectId productId);
+	Product createProduct(Product product);
+	
+}

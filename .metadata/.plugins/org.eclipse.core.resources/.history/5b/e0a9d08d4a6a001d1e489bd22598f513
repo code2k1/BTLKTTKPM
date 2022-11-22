@@ -1,0 +1,11 @@
+package com.kttkpm.bill.service;
+
+import org.bson.types.ObjectId;
+
+import com.kttkpm.bill.model.Bill;
+
+public interface BillService {
+	public Bill getBillById(ObjectId billId);
+	public Bill updateBill(Bill bill);
+	public Bill saveCustomer(Bill bill);
+}

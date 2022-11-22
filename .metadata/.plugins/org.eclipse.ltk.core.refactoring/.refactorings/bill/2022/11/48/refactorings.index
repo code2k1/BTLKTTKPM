@@ -1,0 +1,11 @@
+1669109707217	Rename package 'com.kttkpm.customer.controller'
+1669109721623	Rename package 'com.kttkpm.customer.model'
+1669109730606	Rename package 'com.kttkpm.customer.Repository'
+1669109740313	Rename package 'com.kttkpm.customer.service'
+1669109766668	Copy compilation unit
+1669109770184	Rename type 'Customer2'
+1669110005307	Rename type 'CustomerRepository'
+1669110014618	Rename type 'CustomerService'
+1669110021196	Rename type 'CustomerServiceImpl'
+1669110333818	Rename type 'CustomerController'
+1669115349741	Copy packages

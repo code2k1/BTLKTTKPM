@@ -1,0 +1,54 @@
+package com.hoangdh.billingservice.service;
+
+import com.hoangdh.billingservice.dtos.BillingRequest;
+import com.hoangdh.billingservice.dtos.BillingResponse;
+import com.hoangdh.billingservice.dtos.PassengerResponse;
+import com.hoangdh.billingservice.model.Billing;
+import com.hoangdh.billingservice.repository.BillingRepository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+public class BillingServiceImpl implements BillingService {
+
+	@Autowired
+    private  BillingRepository billingRepository;
+	@Autowired
+    private  WebClient.Builder webClientBuilder;
+
+    @Override
+    public void createBilling(BillingRequest billingRequest) {
+        billingRepository.save(this.mapToBillingRequest(billingRequest));
+    }
+
+    @Override
+    public List<BillingResponse> getBillingsByPassengerId(Long passengerId) {
+        PassengerResponse passengerResponse = webClientBuilder.build().get()
+                .uri("http://passenger-service/api/passengers/" + passengerId)
+                .retrieve()
+                .bodyToMono(PassengerResponse.class)
+                .block();
+
+        return billingRepository.findBillingsByPassengerId(passengerId).stream().map(billing -> BillingResponse.builder()
+                .id(billing.getId())
+                .name(billing.getName())
+                .price(billing.getPrice())
+                .passengerResponse(passengerResponse)
+                .build()).collect(Collectors.toList());
+    }
+
+    private Billing mapToBillingRequest(BillingRequest billingRequest) {
+        return Billing.builder()
+                .name(billingRequest.getName())
+                .price(billingRequest.getPrice())
+                .passengerId(billingRequest.getPassengerId())
+                .build();
+    }
+
+
+}

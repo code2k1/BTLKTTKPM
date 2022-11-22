@@ -1,0 +1,12 @@
+package com.hoangdh.billingservice.service;
+
+import com.hoangdh.billingservice.dtos.BillingRequest;
+import com.hoangdh.billingservice.dtos.BillingResponse;
+
+import java.util.List;
+
+public interface BillingService {
+    void createBilling(BillingRequest billingRequest);
+
+    List<BillingResponse> getBillingsByPassengerId(Long passengerId);
+}

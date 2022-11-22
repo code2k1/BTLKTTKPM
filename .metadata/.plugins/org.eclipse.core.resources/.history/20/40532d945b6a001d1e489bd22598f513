@@ -1,0 +1,77 @@
+package com.kttkpm.billdetail.service;
+
+import java.util.List;
+
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.kttkpm.billdetail.Repository.BillDetailRepository;
+import com.kttkpm.billdetail.model.Bill;
+import com.kttkpm.billdetail.model.BillDetail;
+
+@Service
+public class BillServiceImpl implements BillDetailService {
+
+	@Autowired
+	private BillDetailRepository billDetailRepository;
+	@Autowired
+	private RestTemplate restTemplate;
+
+	@Override
+	public BillDetail getBillDetailById(ObjectId billDetailId) {
+		// TODO Auto-generated method stub
+		return billDetailRepository.getBillDetailById(billDetailId);
+	}
+
+	@Override
+	public List<BillDetail> getBillDetailByBillId(ObjectId billId) {
+		// TODO Auto-generated method stub
+		return billDetailRepository.getBillDetailByBillId(billId);
+	}
+
+	@Override
+	public List<BillDetail> getBillDetailByProductId(ObjectId productId) {
+		// TODO Auto-generated method stub
+		return billDetailRepository.getBillDetailByProductId(productId);
+	}
+
+	@Override
+	public BillDetail updateBill(BillDetail billDetail) {
+		
+		BillDetail billDetail1 = billDetailRepository.getBillDetailById(billDetail1.getBillDetailId());
+		
+		String uri = "http://BILL-SERVICE/bills/"+billDetail.getBillId();
+		
+		
+		if(billDetail1.getTotalPrice()==billDetail.getTotalPrice()) {
+			return billDetailRepository.save(billDetail);
+		}
+		else {
+		if(billDetail1.getTotalPrice()>billDetail.getTotalPrice()) {
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_JSON);
+			//Set object request
+			Bill bill = restTemplate.getForObject(, Bill.class);
+			bill.setTotalPrice(bill.getTotalPrice()-(billDetail1.getTotalPrice()-billDetail.getTotalPrice()));
+			HttpEntity<Bill> httpEntity = new HttpEntity<>(bill, headers);
+			
+			
+			restTemplate.postForObject(null, bill, null)
+			
+		}
+		}
+		
+	}
+
+	@Override
+	public BillDetail saveBill(BillDetail billDetailId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

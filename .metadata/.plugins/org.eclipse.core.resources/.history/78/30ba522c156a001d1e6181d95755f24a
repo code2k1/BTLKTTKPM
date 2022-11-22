@@ -1,0 +1,15 @@
+package com.kttkpm.customer.model;
+
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Document(collection = "customers")
+public class Customer {
+
+}

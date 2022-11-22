@@ -1,0 +1,16 @@
+package com.kttkpm.bill.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.kttkpm.bill.Repository.BillRepository;
+
+@Service
+public class BillServiceImpl implements BillService{
+
+	@Autowired
+	private BillRepository billRepository;
+	
+	
+
+}

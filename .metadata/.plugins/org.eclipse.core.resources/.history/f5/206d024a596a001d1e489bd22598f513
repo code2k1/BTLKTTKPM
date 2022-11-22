@@ -1,0 +1,67 @@
+package com.kttkpm.billdetail.service;
+
+import java.util.List;
+
+import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.kttkpm.billdetail.Repository.BillDetailRepository;
+import com.kttkpm.billdetail.Repository.BillRepository;
+import com.kttkpm.billdetail.model.Bill;
+import com.kttkpm.billdetail.model.BillDetail;
+import com.kttkpm.billdetail.model.Customer;
+
+@Service
+public class BillServiceImpl implements BillDetailService {
+
+	@Autowired
+	private BillDetailRepository billRepository;
+	@Autowired
+	private RestTemplate restTemplate;
+
+	@Override
+	public Customer getCustomerByBillId(ObjectId billId) {
+
+		Bill bill = billRepository.getBillById(billId);
+
+		Customer customer = restTemplate.getForObject("http://CUSTOMER-SERVICE/customers/" + bill.getCustomerId(),
+				Customer.class);
+
+		return customer;
+	}
+
+	@Override
+	public BillDetail getBillDetailById(ObjectId billDetailId) {
+		// TODO Auto-generated method stub
+		return billRepository.getBillDetailById(billDetailId);
+	}
+
+	@Override
+	public List<BillDetail> getBillDetailByBillId(ObjectId billId) {
+		// TODO Auto-generated method stub
+		return billRepository.getBillDetailByBillId(billId);
+	}
+
+	@Override
+	public List<BillDetail> getBillDetailByProductId(ObjectId productId) {
+		// TODO Auto-generated method stub
+		return billRepository.getBillDetailByProductId(productId);
+	}
+
+	@Override
+	public BillDetail updateBill(BillDetail billDetailId) {
+		Bill bill = restTemplate.getForObject("http://BILL-SERVICE/bills/"+billDetailId.getBillId(), Bill.class);
+		
+		
+		return billRepository.save(billDetailId);
+	}
+
+	@Override
+	public BillDetail saveBill(BillDetail billDetailId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

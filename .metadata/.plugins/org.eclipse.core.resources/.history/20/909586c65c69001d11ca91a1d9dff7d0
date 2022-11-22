@@ -1,0 +1,4 @@
+server.port=0
+eureka.client.service-url.defaultZone=http://eureka:password@localhost:8761/eureka
+spring.application.name=Product-Type-service
+
