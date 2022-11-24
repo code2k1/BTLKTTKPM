@@ -1,5 +1,0 @@
-spring:
-   data:
-      mongodb:
-         uri: "mongodb+srv://root:sapassword@serviceapiktpm.ist0v2k.mongodb.net/?retryWrites=true&w=majority"
-         database: StoreCake

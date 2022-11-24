@@ -40,8 +40,8 @@ public class BillController {
 	}
 
 	@GetMapping("/listBill/{customerId}")
-	public Bill getBillsByCustomerId(@PathVariable ObjectId customerId) {
-		return service.getBillById(customerId);
+	public List<Bill> getBillsByCustomerId(@PathVariable ObjectId customerId) {
+		return service.getBillByCustomerId(customerId);
 	}
 
 	@PostMapping

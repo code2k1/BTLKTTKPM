@@ -6,6 +6,11 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\vohie\Desktop\KienTrucThietKePhanMem\billdetail"/>
+			<item value="C:\Users\vohie\Desktop\KienTrucThietKePhanMem\BillDetail"/>
+			<item value="C:\Users\vohie\Desktop\KienTrucThietKePhanMem\cloud-gateway"/>
+			<item value="C:\Users\vohie\Desktop\KienTrucThietKePhanMem\api-gateway"/>
+			<item value="C:\Users\vohie\Desktop\t\spring-microservices\passenger-service"/>
 			<item value="C:\Users\vohie\Desktop\KTTKPM_Tuan09\user-service"/>
 			<item value="C:\Users\vohie\Desktop\KienTrucThietKePhanMem\product_type"/>
 			<item value="C:\Users\vohie\Desktop\KienTrucThietKePhanMem\cloud-config-server"/>

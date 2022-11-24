@@ -1,17 +1,33 @@
 server:
   port: 9191
-  
-spring: 
+
+spring:
   application:
     name: API-GATEWAY
-  cloud: 
+  cloud:
     gateway:
       routes:
-        - id: USER-SERVICE
-          uri: lb://USER-SERVICE
+        - id: BILL-SERVICE
+          uri: lb://BILL-SERVICE
           predicates:
-            - Path=/users/**
-        - id: DEPARTMENT-SERVICE
-          uri: lb://DEPARTMENT-SERVICE
+            - Path=/bills/**
+        - id: BILL-DETAIL-SERVICE
+          uri: lb://BILL-DETAIL-SERVICE
           predicates:
-            - Path=/departments/**      
+            - Path=/billDetails/**
+        - id: CUSTOMER-SERVICE
+          uri: lb://CUSTOMER-SERVICE
+          predicates:
+            - Path=/customers/**
+        - id: PRODUCT-SERVICE
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/products/**
+        - id: PRODUCT-TYPE-SERVICE
+          uri: lb://PRODUCT-TYPE-SERVICE
+          predicates:
+            - Path=/productTypes/**
+        - id: PRODUCT-TYPE-SERVICE
+          uri: lb://PRODUCT-TYPE-SERVICE
+          predicates:
+            - Path=/productTypes/**
