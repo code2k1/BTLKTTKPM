@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.kttkpm.product_type.model.ProductType;
@@ -21,7 +22,10 @@ public class ProductTypeServiceImpl implements ProductTypeService {
 	}
 
 	@Override
+//	@Cacheable(value = "product-types")
+//	@Cacheable("getSingleProductType")
 	public List<ProductType> getAllProductType() {
+//		System.out.println("Usi cache");
 		// TODO Auto-generated method stub
 		return productTypeRepository.findAll();
 	}
